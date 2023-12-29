@@ -23,29 +23,32 @@ font = pygame.font.SysFont('Times New Roman', 26)
 red = (255, 0, 0)
 green = (0, 255, 0)
 
-#create function for drawing text
-def draw_text(text, font, tex_col, x, y):
-    img = font.render(text, True, text_col)
-    screen.blit(img, x, y)
-
 
 #load images
 #background images
-background_img = pygame.image.load('Background/background.png').convert_alpha()
+background_img = pygame.image.load('2D action/Background/background.png').convert_alpha()
 
 #bottom panel
-panel_img = pygame.image.load('Icons/panel.png')
+panel_img = pygame.image.load('2D action/Icons/panel.png')
 
 #load knight
-knight = pygame.image.load('Knight/Idle/0.png')
+knight = pygame.image.load('2D action/Knight/Idle/0.png')
 
-#define function for drawing background
+
+# define function for drawing background
 def draw_bg():
     screen.blit(background_img, (0, 0))
 
 #define fuction for drawing bottom panel
 def draw_bottom_panel():
     screen.blit(panel_img, (0, 400))
+    draw_text(f'{knight.name} HP: {knight.hp}', font, red, 100, screen_height - bottom_panel + 10)
+
+#create function for drawing text
+
+def draw_text(text, font, text_col, x, y):
+	img = font.render(text, True, text_col)
+	screen.blit(img, (x, y))
 
 
 
@@ -66,14 +69,14 @@ class Fighter():
         #load idle images
         temp_list = []
         for i in range(8):
-            img = pygame.image.load(f'{self.name}/Idle/{i}.png')
+            img = pygame.image.load(f'2D action/{self.name}/Idle/{i}.png')
             img = pygame.transform.scale(img, (img.get_width() * 3, img.get_height() * 3))
             temp_list.append(img)
         self.animation_list.append(temp_list)
         #load attack images
         temp_list = []
         for i in range(8):
-            img = pygame.image.load(f'{self.name}/Attack/{i}.png')
+            img = pygame.image.load(f'2D action/{self.name}/Attack/{i}.png')
             img = pygame.transform.scale(img, (img.get_width() * 3, img.get_height() * 3))
             temp_list.append(img)
         self.animation_list.append(temp_list)
